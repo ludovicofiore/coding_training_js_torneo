@@ -99,3 +99,33 @@ const weapons = [
         power: 250
     }
 ];
+
+
+// Milestone 1 - Scelta dell’arma:
+// ogni combattente sceglierà casualmente un'arma dalla relativa lista. Una volta scelta, un'arma non sarà più disponibile per i successivi combattenti.
+
+function assignWeapons(fighters, weapons) {
+    // Crea una copia delle armi per evitare di modificare l'array originale
+    const availableWeapons = weapons;
+
+    return fighters.map(fighter => {
+        // estraggo un indice randomico corrispondente ad un arma
+        const weaponIndex = Math.floor(Math.random() * availableWeapons.length);
+
+        // tolgo l'arma estratta dall'array con splice
+        const weapon = availableWeapons.splice(weaponIndex, 1)[0];
+
+        // creo un nuovo oggetto con combattente e arma con spread operator 
+        return {
+            ...fighter,
+            weapon
+        };
+    });
+
+}
+
+// array con combattenti e armi
+const fightersWithWeapons = assignWeapons(fighters, weapons);
+
+console.log(fightersWithWeapons);
+
