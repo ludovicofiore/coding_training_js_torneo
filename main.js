@@ -105,7 +105,7 @@ const weapons = [
 // ogni combattente sceglierà casualmente un'arma dalla relativa lista. Una volta scelta, un'arma non sarà più disponibile per i successivi combattenti.
 
 function assignWeapons(fighters, weapons) {
-    // Crea una copia delle armi per evitare di modificare l'array originale
+    // Creo una copia delle armi per evitare di modificare l'array originale
     const availableWeapons = weapons;
 
     return fighters.map(fighter => {
@@ -127,5 +127,18 @@ function assignWeapons(fighters, weapons) {
 // array con combattenti e armi
 const fightersWithWeapons = assignWeapons(fighters, weapons);
 
-console.log(fightersWithWeapons);
+// console.log(fightersWithWeapons);
 
+
+// Milestone 2 - Allenamento:
+// ogni combattente si sottoporrà ad un allenamento che incrementerà (o forse no) la sua potenza, moltiplicandola per un numero casuale tra 1 e 100.
+
+for (let i = 0; i < fightersWithWeapons.length; i++) {
+    // estrggo un numero da 1 a 100 che rappresenta il livello di allenamento
+    let trainingLevel = Math.floor((Math.random() * 100) + 1);
+    console.log(trainingLevel);
+
+    // moltiplico la potenza per il livello di allenamento
+    let newPower = fightersWithWeapons[i].power * trainingLevel;
+    console.log(newPower);
+}
