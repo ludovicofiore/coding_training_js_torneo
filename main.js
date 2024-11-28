@@ -115,10 +115,11 @@ function assignWeapons(fighters, weapons) {
         // tolgo l'arma estratta dall'array con splice
         const weapon = availableWeapons.splice(weaponIndex, 1)[0];
 
-        // creo un nuovo oggetto con combattente e arma con spread operator 
+        // creo un nuovo oggetto con combattente e arma e aggiungo voce per potenza totale con spread operator 
         return {
             ...fighter,
-            weapon
+            weapon,
+            totalPower: fighter.power + weapon.power
         };
     });
 
@@ -127,18 +128,33 @@ function assignWeapons(fighters, weapons) {
 // array con combattenti e armi
 const fightersWithWeapons = assignWeapons(fighters, weapons);
 
-// console.log(fightersWithWeapons);
+console.log('array con combattenti e armi: ', fightersWithWeapons);
 
 
 // Milestone 2 - Allenamento:
 // ogni combattente si sottoporrà ad un allenamento che incrementerà (o forse no) la sua potenza, moltiplicandola per un numero casuale tra 1 e 100.
 
-for (let i = 0; i < fightersWithWeapons.length; i++) {
-    // estrggo un numero da 1 a 100 che rappresenta il livello di allenamento
-    let trainingLevel = Math.floor((Math.random() * 100) + 1);
-    console.log(trainingLevel);
+function training(fightersWithWeapons) {
 
-    // moltiplico la potenza per il livello di allenamento
-    let newPower = fightersWithWeapons[i].power * trainingLevel;
-    console.log(newPower);
+    for (let i = 0; i < fightersWithWeapons.length; i++) {
+        // estrggo un numero da 1 a 100 che rappresenta il livello di allenamento
+        let trainingLevel = Math.floor((Math.random() * 100) + 1);
+        // console.log(trainingLevel);
+
+        // moltiplico la potenza per il livello di allenamento
+        let newPower = fightersWithWeapons[i].power * trainingLevel;
+        // console.log(newPower);
+
+        // aggiorno la potenza del combattente
+        fightersWithWeapons[i].power = newPower;
+
+        // aggiorno totalPower
+        fightersWithWeapons[i].totalPower = newPower + fightersWithWeapons[i].weapon.power;
+
+    }
+
+    return fightersWithWeapons;
 }
+
+const trainingArray = training(fightersWithWeapons);
+console.log('array dopo allenamento ', trainingArray);
