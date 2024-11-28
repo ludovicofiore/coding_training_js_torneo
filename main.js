@@ -158,3 +158,19 @@ function training(fightersWithWeapons) {
 
 const trainingArray = training(fightersWithWeapons);
 console.log('array dopo allenamento ', trainingArray);
+
+
+// Milestone 3 - Qualificazione:
+// escludiamo dal torneo chi, dopo l'allenamento non è riuscito a raggiungere una potenza di almeno 2000.
+
+// con filter creo un nuovo array senza combattenti con forza inferiore a 2000
+const qualificationArray = trainingArray.filter((fighter) => fighter.totalPower > 2000);
+console.log('array dopo qualificazioni: ', qualificationArray);
+
+// per milestone 4 serve un numero pari di combattenti quindi aggiungo un combattente se dispari
+if (qualificationArray.length % 2 !== 0) {
+    qualificationArray.push({
+        name: "Robot",
+        totalPower: 4000
+    })
+}
