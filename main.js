@@ -174,3 +174,41 @@ if (qualificationArray.length % 2 !== 0) {
         totalPower: 4000
     })
 }
+
+
+
+// Milestone 4 - Combattimento:
+// i combattimenti si svolgeranno tra un partecipante e il successivo dell'elenco, assicurandosi che ognuno combatta una sola volta. 
+// In ogni scontro vincerà il combattente con la potenza più alta. In caso di parità vincerà chi "gioca in casa", ossia chi viene prima nell'elenco.
+
+// array per vincitori 
+const winnersArray = [];
+
+// ciclo con i + 2 per muoversi di due alla volta e non ripetere incontri
+for (let i = 0; i < qualificationArray.length; i = i + 2) {
+
+    let firstFighter = qualificationArray[i];
+    let secondFighter = qualificationArray[i + 1];
+    // condizione per essere pushati nell'array vincitori
+    if (firstFighter.totalPower >= secondFighter.totalPower) {
+        winnersArray.push(firstFighter);
+    } else {
+        winnersArray.push(secondFighter);
+    }
+}
+
+console.log('array dei vincitori: ', winnersArray);
+
+
+
+// Milestone 5 - Premiazione:
+// tra tutti i vincitori degli scontri, saliranno sul podio i 3 combattenti con la potenza più alta, in ordine decrescente.
+
+// nuovo array con ordine per potenza 
+const winnersArraySorted = winnersArray.sort((a, b) => b.totalPower - a.totalPower);
+console.log('array dei vincitori ordinati per potenza: ', winnersArraySorted);
+
+// prendo solo i primi tre 
+const finalWinners = winnersArraySorted.slice(0, 3);
+console.log('prime tre posizioni: ', finalWinners);
+
